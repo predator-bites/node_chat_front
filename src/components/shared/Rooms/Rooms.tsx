@@ -8,7 +8,7 @@ import { Room } from '../Room/Room';
 import { NewRoom, type NewRoomData } from '../NewRoom';
 
 export const Rooms: React.FC = () => {
-  const [_, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
   const [newTitle, setNewTitle] = useState('');
   const [isCreating, setIsCreating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

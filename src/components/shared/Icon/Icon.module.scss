@@ -1,0 +1,22 @@
+.icon {
+  transition: all 200ms;
+  position: relative;
+
+  &--small {
+    width: 16px;
+    height: 16px;
+  }
+
+  &--big {
+    width: 30px;
+    height: 30px;
+  }
+
+  &--rotated {
+    rotate: 90deg;
+  }
+}
+
+.button:hover > * {
+  scale: 1.2;
+}

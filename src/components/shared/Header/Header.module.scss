@@ -1,0 +1,23 @@
+.header {
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  background-color: $primary;
+  z-index: 1;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+  border-bottom: 1px solid $secondary;
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;;
+    aspect-ratio: 1 / 1;
+    height: 100%;
+  }
+}

@@ -1,0 +1,24 @@
+.button {
+  padding: 5;
+  transition: all $middle;
+  aspect-ratio: 3 / 1;
+  background-color: $primary;
+  color: $secondary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 1px solid $secondary;
+  border-radius: 3px;
+
+  &:hover {
+    color: $primary;
+    background-color: $secondary;
+  }
+
+  &--square {
+    height: 100%;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+

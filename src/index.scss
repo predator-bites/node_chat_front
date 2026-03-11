@@ -1,0 +1,15 @@
+@import './styles/variables.scss';
+@import './styles/main.scss';
+@import './components/shared/Loader/Loader.module.scss';
+@import './components/shared/Button/Button.module.scss';
+@import './components/shared/Header/Header.module.scss';
+@import './components/shared/Icon/Icon.module.scss';
+@import './components/shared/Logo/Logo.module.scss';
+@import './components/shared/Rooms/Rooms.module.scss';
+
+@import './components/shared/Chat/Chat.module.scss';
+@import './components/shared/Messages/Messages.module.scss';
+@import './components/shared/Message/Message.module.scss';
+
+@import './components/LoginPage/LoginPage.module.scss';
+@import './components//ChatsPage/ChatPage.module.scss';

@@ -1,5 +1,4 @@
 import type React from 'react';
-import { Icon } from '../Icon';
 import { useCallback, useState } from 'react';
 import client from '../../../client';
 import { Loader } from '../Loader';

@@ -1,0 +1,35 @@
+.message {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  width: fit-content;
+  padding: 10px;
+  background-color: $secondary;
+  border-radius: 15px;
+  font-size: $medium;
+
+  &__createdAt {
+    align-self: flex-end;
+  }
+
+  // &__author, &__createdAt {
+  //   color: $primary;
+  // }
+
+
+  &--createdByOthers {
+    color: $red;
+    justify-self: left;
+  }
+
+  &__text {
+    color: $primary;
+  }
+
+  &--createdByUser {
+    color: $blue;
+    justify-self: right;
+  }
+}

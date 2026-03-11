@@ -1,0 +1,43 @@
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  max-width: 50px;
+  max-height: 50px;
+  display: flex;
+  place-self: center;
+  animation: 1s infinite linear spin;
+  aspect-ratio: 1 / 1;
+  height: 100%;
+  opacity: 1;
+
+  &--bgBlack {
+    background-color: black;
+  }
+
+  &--primary {
+    color: $primary;
+  }
+
+  &--transparent {
+    opacity: 0.5;
+  }
+}
+
+.page__loader {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+
+  background-color: $secondary;
+  position: absolute;
+  opacity: 0.8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

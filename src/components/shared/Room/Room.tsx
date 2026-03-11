@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import client from '../../../client';
 import { Loader } from '../Loader';
 import { NewRoom, type NewRoomData } from '../NewRoom';
+import type { AxiosResponse } from 'axios';
 
 interface Props {
   room: Room;
@@ -11,7 +12,7 @@ interface Props {
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     roomId: string,
   ) => void;
-  onDelete: (roomId: string) => Promise<void>;
+  onDelete: (roomId: string) => Promise<AxiosResponse>;
 }
 
 export const Room: React.FC<Props> = ({ room, onClick, onDelete }) => {

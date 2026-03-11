@@ -6,6 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { getNewParams } from '../../../utils/workWithSearchParams';
 import { Room } from '../Room/Room';
 import { NewRoom, type NewRoomData } from '../NewRoom';
+import { storageManager } from '../../../utils/storage';
 
 export const Rooms: React.FC = () => {
   const [, setSearchParams] = useSearchParams();
@@ -13,6 +14,7 @@ export const Rooms: React.FC = () => {
   const [isCreating, setIsCreating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const data = useAppSelector((state) => state.rooms);
+  const { userId } = storageManager.getUser();
 
   // #region handlers
   const onCreate = () => {
@@ -29,12 +31,12 @@ export const Rooms: React.FC = () => {
   };
 
   const onSubmit = useCallback(() => {
-    if (!newTitle.trim()) {
+    if (!newTitle.trim() || !userId) {
       return;
     }
 
-    return client.createRoom(newTitle);
-  }, [newTitle]);
+    return client.createRoom(newTitle, userId);
+  }, [newTitle, userId]);
 
   const onClick = (
     event: React.MouseEvent<HTMLElement, MouseEvent>,
@@ -53,8 +55,8 @@ export const Rooms: React.FC = () => {
     setParam('roomId', roomId);
   };
 
-  const onDelete = (roomId: string) => {
-    return client.deleteRoom(roomId);
+  const onDelete = (roomId: string, userId: string) => {
+    return client.deleteRoom(roomId, userId);
   };
   // #endregion
 

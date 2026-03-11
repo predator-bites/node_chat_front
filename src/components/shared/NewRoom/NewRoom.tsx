@@ -42,7 +42,7 @@ export const NewRoom: React.FC<Props> = ({ newRoomData }) => {
 
   return (
     <div className="room">
-      {isLoading && <Loader className="loader--primary" />}
+      <Loader className="loader--primary" isLoading={isLoading} />
 
       <input
         type="text"

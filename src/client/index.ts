@@ -24,12 +24,26 @@ const sendMessage = async (
   return axios.post(BASE_URL + '/messages', payload);
 };
 
-const createRoom = async (title: string) => {
-  return axios.post(BASE_URL + '/rooms', { title });
+const createRoom = async (title: string, userId: string) => {
+  return axios.post(
+    BASE_URL + '/rooms',
+    { title, userId },
+    {
+      headers: {
+        'X-USERID': userId,
+      },
+    },
+  );
 };
 
-const deleteRoom = async (roomId: string) => {
-  return axios.delete(BASE_URL + `/rooms/${roomId}`);
+const deleteRoom = async (roomId: string, userId: string) => {
+  console.log(userId);
+
+  return axios.delete(BASE_URL + `/rooms/${roomId}`, {
+    headers: {
+      'X-USERID': userId,
+    },
+  });
 };
 
 const loadData = async () => {
@@ -45,8 +59,18 @@ const loadData = async () => {
   };
 };
 
-const renameRoom = async (newTitle: string, roomId: string) => {
-  return axios.patch(`${BASE_URL}/rooms/${roomId}`, { title: newTitle });
+const renameRoom = async (newTitle: string, roomId: string, userId: string) => {
+  return axios.patch(
+    `${BASE_URL}/rooms/${roomId}`,
+    {
+      title: newTitle,
+    },
+    {
+      headers: {
+        'X-USERID': userId,
+      },
+    },
+  );
 };
 
 const createUser = async (userName: string) => {

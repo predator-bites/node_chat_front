@@ -5,6 +5,8 @@ import client from '../../../client';
 import { Loader } from '../Loader';
 import { NewRoom, type NewRoomData } from '../NewRoom';
 import type { AxiosResponse } from 'axios';
+import { storageManager } from '../../../utils/storage';
+import { RoomButtons } from './RoomButtons';
 
 interface Props {
   room: Room;
@@ -12,19 +14,23 @@ interface Props {
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     roomId: string,
   ) => void;
-  onDelete: (roomId: string) => Promise<AxiosResponse>;
+  onDelete: (roomId: string, userId: string) => Promise<AxiosResponse>;
 }
 
 export const Room: React.FC<Props> = ({ room, onClick, onDelete }) => {
   const [newTitle, setNewTitle] = useState(room.title);
   const [isChanging, setIsChanging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { userId, userName } = storageManager.getUser();
 
   // #region
   const onRoomDelete = () => {
+    if (!userId) {
+      return;
+    }
     setIsLoading(true);
 
-    onDelete(room.id).finally(() => {
+    onDelete(room.id, userId).finally(() => {
       setIsLoading(false);
     });
   };
@@ -38,17 +44,17 @@ export const Room: React.FC<Props> = ({ room, onClick, onDelete }) => {
   };
 
   const onSubmit = useCallback(() => {
-    if (!newTitle || !room.id) {
+    if (!newTitle || !room.id || !userId) {
       return;
     }
 
     setIsLoading(true);
 
-    client.renameRoom(newTitle, room.id).finally(() => {
+    client.renameRoom(newTitle, room.id, userId).finally(() => {
       setIsLoading(false);
       setIsChanging(false);
     });
-  }, [newTitle, room.id]);
+  }, [newTitle, room.id, userId]);
   // #endregion
 
   const cb = useCallback(
@@ -81,26 +87,19 @@ export const Room: React.FC<Props> = ({ room, onClick, onDelete }) => {
     return <NewRoom newRoomData={newRoomData} />;
   }
 
+  const showStatus = Boolean(room.id && room.author === userName);
+
   return (
     <div className="room" onClick={(event) => onClick(event, room.id)}>
-      {isLoading && <Loader className="loader--primary" />}
-      <h2 className="room__title">{room.title}</h2>
-      <div className="room__buttonContainer">
-        {room.id && (
-          <button
-            className="button room__button"
-            onClick={() => setIsChanging(true)}
-          >
-            <Icon iconSlug="Pencil" size="small" />
-          </button>
-        )}
+      <Loader className="loader--primary" isLoading={isLoading} />
 
-        {room.id && (
-          <button className="button room__button" onClick={onRoomDelete}>
-            <Icon iconSlug="X" size="small" />
-          </button>
-        )}
-      </div>
+      <h2 className="room__title">{room.title}</h2>
+
+      <RoomButtons
+        showStatus={showStatus}
+        setIsChanging={setIsChanging}
+        onDelete={onRoomDelete}
+      />
     </div>
   );
 };

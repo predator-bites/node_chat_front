@@ -4,7 +4,7 @@ interface InitialState {
   rooms: Room[];
 }
 
-const generalRoom = { id: '', title: 'general' };
+const generalRoom = { id: '', title: 'general', author: null };
 
 const initialState: InitialState = {
   rooms: [generalRoom],

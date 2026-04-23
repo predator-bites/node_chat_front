@@ -86,7 +86,7 @@ const LoginPage: React.FC = () => {
   return (
     <div className="page__content loginContainer">
       <div className="login">
-        {isLoading && <Loader className="loader--primary" />}
+        <Loader className="loader--primary" isLoading={isLoading} />
 
         <label htmlFor="name" className="input__title">
           Enter your name

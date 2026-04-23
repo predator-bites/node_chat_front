@@ -42,7 +42,10 @@ const ChatsPage: React.FC = () => {
 
   return (
     <div className="page__content chatsContainer">
-      {isLoading && <Loader className="loader--primary loader--transparent" />}
+      <Loader
+        className="loader--primary loader--transparent"
+        isLoading={isLoading}
+      />
       <Rooms />
       <Chat />
     </div>

@@ -23,6 +23,7 @@ type Message = {
 type Room = {
   id: string;
   title: string;
+  author: string | null;
 };
 
 type User = {
@@ -30,7 +31,7 @@ type User = {
   name: string;
 };
 
-type RawRoom = Pick<Room, 'title'>;
+type RawRoom = Pick<Room, 'title' | 'author'>;
 
 type PartialRawRoom = Partial<RawRoom>;
 

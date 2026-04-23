@@ -95,7 +95,7 @@ export const Rooms: React.FC = () => {
   // #region data
   const newRoomData: NewRoomData = {
     newTitle: newTitle,
-    placeholder: 'Change name of the room',
+    placeholder: 'Enter a name of the room',
     onChange: onChange,
     onBlur: onBlur,
     isLoading: isLoading,
